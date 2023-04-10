@@ -29,10 +29,10 @@ params:
     profileMode:
         # Disable to populate home page with 'mainSections' content
         enabled: true
-        title: Andi Skrgat
+        title: Pure content
         description: |
 
-          Hello, I am Andi Skrgat. I am a software engineer. I write about various topics interesting to me.
+          Hello, I am Andi Skrgat and I write about various topics interesting to me, mostly related to software engineering.
         # imageWidth: 120
         # imageHeight: 120
         # buttons:
