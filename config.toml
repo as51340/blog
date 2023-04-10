@@ -1,3 +1,4 @@
 languageCode = 'en-us'
-title = 'Andi new site'
+title = 'Engineering blog'
 theme = "charlolamode"
+baseURL = "https://as51340.github.io/blog/"
