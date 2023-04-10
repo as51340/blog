@@ -33,8 +33,6 @@ params:
         description: |
 
           Hello, I am Andi Skrgat. I am a software engineer. I write about various topics interesting to me.
-        # imageUrl: "/images/profile.png"
-        # imageTitle: my image
         # imageWidth: 120
         # imageHeight: 120
         # buttons:
@@ -64,9 +62,6 @@ params:
           favicon32x32: "/images/favicon-32x32.png"
           apple_touch_icon: "/images/apple-touch-icon.png"
           safari_pinned_tab: "/images/apple-touch-icon.png"
-
-
-
 enableInlineShortcodes: true
 enableRobotsTXT: true
 enableEmoji: true
