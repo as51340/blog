@@ -1,0 +1,78 @@
+languageCode: en-us
+title: Andi Skrgat blog
+baseURL: https://as51340.github.io/blog/
+
+title: Andi Skrgat
+paginate: 5
+theme: charlolamode
+
+menu:
+    main:
+        - name: About me
+          url: /about/
+          weight: 30
+        - name: Posts
+          url: /posts/
+          weight: 20
+
+params:
+    author: Andi Skrgat
+    defaultTheme: auto
+    # disableThemeToggle: true
+    ShowShareButtons: true
+    ShowReadingTime: true
+    displayFullLangName: true
+    ShowBreadCrumbs: true
+    ShowCodeCopyButtons: true
+    ShowToc: true
+
+    profileMode:
+        # Disable to populate home page with 'mainSections' content
+        enabled: true
+        title: Andi Skrgat
+        description: |
+
+          Hello, I am Andi Skrgat. I am a software engineer. I write about various topics interesting to me.
+        # imageUrl: "/images/profile.png"
+        # imageTitle: my image
+        # imageWidth: 120
+        # imageHeight: 120
+        # buttons:
+        #    - name: Don't click me
+        #      url: https://www.youtube.com/watch?v=dQw4w9WgXcQ
+    mainSections:
+      - articles
+
+    socialIcons:
+        - name: github
+          url: "https://github.com/as51340"
+        - name: linkedin
+          url: "https://www.linkedin.com/in/andi-skrgat-658b471b8/"
+
+      # add more social icons. find more in svg.html file
+      # - name: youtube
+      #   url: yoururl
+      # - name: twitter
+      #   url: yoururl
+      # - name: facebook
+      #   url: yoururl
+
+    # change favicon in images folder (icon for web tab)
+    assets:
+          favicon: "/images/favicon.ico"
+          favicon16x16: "/images/favicon-16x16.png"
+          favicon32x32: "/images/favicon-32x32.png"
+          apple_touch_icon: "/images/apple-touch-icon.png"
+          safari_pinned_tab: "/images/apple-touch-icon.png"
+
+
+
+enableInlineShortcodes: true
+enableRobotsTXT: true
+enableEmoji: true
+pygmentsUseClasses: true
+
+minify:
+    disableXML: true
+
+
