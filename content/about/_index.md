@@ -3,7 +3,7 @@ Title: About me
 type: list
 ---
 
-I currently work as a software engineer in Memgraph field team working mostly on enhancing database's functionality :male-technologist:.  In my free time I enjoy playing and thinking about football :soccer_ball:. Hence, you may find few articles about data science applications in football. I also enjoy reading, hiking and running :books: :mountain: :running:.
+I currently work as a software engineer in Memgraph working mostly on enhancing database's functionality :male-technologist:. In my free time I enjoy playing and thinking about football :soccer_ball:. Hence, you may find few articles about data science applications in football. I also enjoy reading, hiking and running :books: :mountain: :running:.
 
 ## Contact
 
