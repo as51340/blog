@@ -11,8 +11,8 @@ menu:
         - name: About me
           url: /about/
           weight: 30
-        - name: Databases
-          url: /databases/
+        - name: Engineering
+          url: /engineering/
           weight: 20
         - name: Football
           url: /football/

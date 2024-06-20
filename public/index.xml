@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Andi Skrgat</title>
+    <link>https://as51340.github.io/blog/</link>
+    <description>Recent content on Andi Skrgat</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language><atom:link href="https://as51340.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Choosing optimal index with limited information available</title>
+      <link>https://as51340.github.io/blog/databases/optimal_index_in_limited_environment/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://as51340.github.io/blog/databases/optimal_index_in_limited_environment/</guid>
+      <description>Blog post</description>
+    </item>
+    
+    <item>
+      <title>Durability theory in databases and How Does Memgraph Ensure Data Durability?</title>
+      <link>https://as51340.github.io/blog/databases/durability_in_databases/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://as51340.github.io/blog/databases/durability_in_databases/</guid>
+      <description>Blog post</description>
+    </item>
+    
+    <item>
+      <title>Football analysis products part II</title>
+      <link>https://as51340.github.io/blog/football/football_analysis_products_part2/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://as51340.github.io/blog/football/football_analysis_products_part2/</guid>
+      <description>There are two types of data you can work with when doing football analysis. The first type is tracking data which provides us with information about the position of every player and the ball at every moment of the match. Such data is already enough to extract a variety of statistical info related to players such as distance covered, number of sprints, sprint classification into categories, player speed and acceleration through time etc.</description>
+    </item>
+    
+    <item>
+      <title>High availability Memgraph</title>
+      <link>https://as51340.github.io/blog/databases/high_availability/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://as51340.github.io/blog/databases/high_availability/</guid>
+      <description>Video Blog post</description>
+    </item>
+    
+    <item>
+      <title>In-memory vs. disk-based databases:Why do you need a larger than memory architecture?</title>
+      <link>https://as51340.github.io/blog/databases/larger_than_memory_architecture/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://as51340.github.io/blog/databases/larger_than_memory_architecture/</guid>
+      <description>Blog post</description>
+    </item>
+    
+    <item>
+      <title>Introduction to statistical football analysis</title>
+      <link>https://as51340.github.io/blog/football/introduction_to_football_analysis/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://as51340.github.io/blog/football/introduction_to_football_analysis/</guid>
+      <description>Two categories of products used in the industry can be identified. First category of products mainly deal with a support for event tagging and drawing visualizations. One of the best examples of a first category is Once, the product which has the possibility to tag actions based on the information about action&amp;rsquo;s end result.
+StatsPerform is a main representative of the second category of products supporting ball and player tracking. Except for an incredible amount of information it can provide analysts with, such platform allows analysis of opponent team without any GPS devices required.</description>
+    </item>
+    
+    <item>
+      <title>Math Braintrainer</title>
+      <link>https://as51340.github.io/blog/projects/math-brain-trainer/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://as51340.github.io/blog/projects/math-brain-trainer/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Networking</title>
+      <link>https://as51340.github.io/blog/databases/networking/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://as51340.github.io/blog/databases/networking/</guid>
+      <description>Question we are trying to investigate: Is maybe Docker bridge network the cause of low bandwidth?
+ Investigate IPerf netperf TCP_RR What are network interfaces, how does all that shit work? How is NIC used? What is gateway in network intefaces?  Fact: Docker containers have their own interface. Fact: use netstat -i to list network interfaces. lo = Loopback interface = large MTU.</description>
+    </item>
+    
+    <item>
+      <title>Surprise Surprise</title>
+      <link>https://as51340.github.io/blog/articles/article/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://as51340.github.io/blog/articles/article/</guid>
+      <description>Thank you for your support! Hello. If you like this template, I&amp;rsquo;d be happy to get a coffee donation :)
+ </description>
+    </item>
+    
+    <item>
+      <title>Synchronize data between Memgraph and Elasticsearch</title>
+      <link>https://as51340.github.io/blog/databases/elasticsearch/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://as51340.github.io/blog/databases/elasticsearch/</guid>
+      <description>Blog post</description>
+    </item>
+    
+    <item>
+      <title>Synchronizing data access in databases</title>
+      <link>https://as51340.github.io/blog/databases/synchronization_in_databases/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://as51340.github.io/blog/databases/synchronization_in_databases/</guid>
+      <description>Latches vs. locks Latches and locks are often interchangeably used to describe the synchronization scheme of a database. However, there are subtle differences in their usage. Locks are preferred when talking about users&#39; interaction with the database through transactions. For example, locks as such are used in implementing waits-for-graph in deadlock detection, in transaction abort (full or partial) and in transaction timeout. On the other side, latches are used for ensuring consistency in parallel data structures which constitute the core of the database&amp;rsquo;s storage engine.</description>
+    </item>
+    
+    <item>
+      <title>Testing distributed systems</title>
+      <link>https://as51340.github.io/blog/databases/jepsen/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://as51340.github.io/blog/databases/jepsen/</guid>
+      <description>Introduction In the last couple of weeks I had the chance to explore Jepsen, a framework used for testing distributed systems. Jepsen cannot prove the correctness of some distributed system but rather takes an approach of finding inconsistencies. Deep in the core, it uses txn dependency graphs as described in the Adya&amp;rsquo;s PhD thesis.
+Clojure Jepsen is written in Clojure, functional language that is bidirectionally compatible with Java. One of the most important characteristics of Clojure is its functions.</description>
+    </item>
+    
+  </channel>
+</rss>
