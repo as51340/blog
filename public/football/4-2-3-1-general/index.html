@@ -5,11 +5,11 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
-<title>Introduction to statistical football analysis | Andi Skrgat</title>
+<title>4-2-3-1 Part I: General | Andi Skrgat</title>
 <meta name="keywords" content="" />
-<meta name="description" content="In the last few years, football analysis has been greatly enhanced with computer vision techniques based on artificial intelligence. Such products allow experienced analysts to extract many useful information in a much shorter time than doing it manually. This blog post dives into some of industry-level products.">
+<meta name="description" content="The best way to learn something is by trying to explain it to others. I am starting a series of blog posts about 4-2-3-1 formation and how do I implement it when coaching. In this blog post there is a shallow introduction into several subparts of the game that will be expanded in further writings.">
 <meta name="author" content="Andi Skrgat">
-<link rel="canonical" href="https://as51340.github.io/blog/football/introduction_to_football_analysis/" />
+<link rel="canonical" href="https://as51340.github.io/blog/football/4-2-3-1-general/" />
 <link crossorigin="anonymous" href="/blog/assets/css/stylesheet.min.a9d03b93f465f581a1d22dc8a98d36bb5a5055810de2090c66bc5d9124cf4d03.css" integrity="sha256-qdA7k/Rl9YGh0i3IqY02u1pQVYEN4gkMZrxdkSTPTQM=" rel="preload stylesheet" as="style">
 <script defer crossorigin="anonymous" src="/blog/assets/js/highlight.min.27cd435cc9ed6abb4b496581b151804f79f366c412620272bb94e2f5f598ebcc.js" integrity="sha256-J81DXMntartLSWWBsVGAT3nzZsQSYgJyu5Ti9fWY68w="
     onload="hljs.initHighlightingOnLoad();"></script>
@@ -126,20 +126,66 @@
   <header class="post-header">
     <div class="breadcrumbs"><a href="https://as51340.github.io/blog/">Home</a></div>
     <h1 class="post-title">
-      Introduction to statistical football analysis
+      4-2-3-1 Part I: General
     </h1>
     <div class="post-description">
-      In the last few years, football analysis has been greatly enhanced with computer vision techniques based on artificial intelligence. Such products allow experienced analysts to extract many useful information in a much shorter time than doing it manually. This blog post dives into some of industry-level products.
+      The best way to learn something is by trying to explain it to others. I am starting a series of blog posts about 4-2-3-1 formation and how do I implement it when coaching. In this blog post there is a shallow introduction into several subparts of the game that will be expanded in further writings.
     </div>
-    <div class="post-meta">2 min&nbsp;·&nbsp;Andi Skrgat</div>
-  </header> 
+    <div class="post-meta">3 min&nbsp;·&nbsp;Andi Skrgat</div>
+  </header> <div class="toc">
+    <details >
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">Table of Contents</span>
+        </summary>
+
+        <div class="inner"><ul>
+                <li>
+                    <a href="#general" aria-label="General">General</a></li>
+                <li>
+                    <a href="#shallow-dive-into-exploring-tactical-structure" aria-label="Shallow dive into exploring tactical structure">Shallow dive into exploring tactical structure</a></li>
+                <li>
+                    <a href="#high-press" aria-label="High-press">High-press</a></li>
+                <li>
+                    <a href="#build-up" aria-label="Build-up">Build-up</a></li>
+                <li>
+                    <a href="#coming-up-next" aria-label="Coming-up next">Coming-up next</a>
+                </li>
+            </ul>
+        </div>
+    </details>
+</div>
 
   <div class="post-content">
-  <p>Two categories of products used in the industry can be identified. First category of products mainly deal with a support for <strong>event tagging and drawing visualizations</strong>. One of the best examples of a first category is <a href="https://once.de/">Once</a>, the product which has the possibility to tag actions based on the information about <strong>action&rsquo;s end result</strong>.<br>
-<a href="https://www.statsperform.com/">StatsPerform</a> is a main representative of the second category of products supporting <strong>ball and player tracking</strong>. Except for an incredible amount of information it can provide analysts with, such platform allows <strong>analysis of opponent team without any GPS devices required</strong>. They distinguish themself from the rest of the competition by an extensive tactical analysis. Edge analysis provides the user with precise tactical insights based on the tracking data. <strong>Team shape analysis</strong> detects game moments in which <strong>opponent team makes mistakes</strong>, <strong>space can be exploited</strong> and quantifies all that with interpretable numbers for an end user. Most of the features are based on complex <strong>AI models</strong>. <strong>The PossessionValue model</strong> measures player&rsquo;s impact on the probability of his team scoring in the next 10 seconds of the match. Recently, <strong>quantifying pressure players impose in a specific game moment and detailed set-piece analysis</strong> are some of the most important parts of the game on which much focus has been put.<br>
-StatsPerform uses <strong>Opta</strong> in the background to generate <strong>vast amount of match-related data</strong>. This data is collected in the <strong>blended process of combining AI computer vision models with human annotators</strong> who thorougly correct system&rsquo;s inefficiencies.
-<a href="https://www.spiideo.com/">Spiideo</a> uses AI on a level above, to obtain <strong>high-quality panomaric footages</strong> without human intervention required. There are many other video analysis software solutions like <a href="https://www.hudl.com/">Hudl</a>, <a href="https://www.dartfish.com/">Dartfish</a>, <a href="https://longomatch.com/en/">Longomatch</a>, <a href="https://www.nacsport.com/index.php?lc=en-us">Nacsport</a> etc., no offend to others not mentioned. Except for StatsPerform, more-less all systems are mainly visualization tools wih only a basic capabilities of generating data. However, they really excel in creating powerful visualization, tagging capabilities and its immense number of dashboards that can be created.</p>
-<p>This blog post gives a basic introduction to industry-level products useful for the football analysis. In the next blog post, I will try to explain in more details how object detection is useful for such tasks. Until the next time 🫡.</p>
+  <h2 id="general">General</h2>
+<p>As a coach, my currently favourite formation is 4-2-3-1. It is very simple, especially when taking into account that I am explaining
+it through the season to the kids. Compared to the simplest 4-4-2, it offers an additional midfielder by dropping one striker into half-space.</p>
+<p>I like the formation because it offers plenty of attacking options while maintaining defensive stability. Two central (defensive) midfielders form
+solid base when building the attack. Full backs are providing the width while depth is maintained by striker and one or both wingers. Wingers
+can and should often come into the middle to create overload. One specific tactical setup I like is when one winger comes into the middle, plays
+a short layoff to any of the 3 midfielders while striker and the winger on the other side pin center back and full back. This diagonal
+2vs.2 situation can be very dangerous when a good, dangerous ball in the depth is played.</p>
+<p><img loading="lazy" src="/blog/images/4_2_3_1.png" alt="4-2-3-1 setup"  title="4-2-3-1"  />
+</p>
+<h2 id="shallow-dive-into-exploring-tactical-structure">Shallow dive into exploring tactical structure</h2>
+<p>Attacking midfielder in my system has a freedom in movement and his goal is to create overload on either side or in the center with his high quality
+movements and technical ability (real number 10). In the defense, attacking midfielder is very important because when in mid-low block, we play
+4-4-2 where both front players need to close plenty of space. In the mid-low block, midfielders take care of opposition&rsquo;s 2 front midfielders
+while the 3rd midfielder (since opposition usually play with 3 in the middle) is marked by the winger on the opposite side from where the balls
+is.
+If opposition&rsquo;s center-back is left alone, our center back should take care of their most offensive midfielder (CAM) if in the dangerous
+(3rd zone). Center-backs then play in reality 2vs.2 against striker and attacking midfielder.</p>
+<p>Most of the teams I play against (almost all) play in 4-3-3. This means that in the 1st zone I play with (-1), in the 2nd zone midfielders
+play 3vs.3 and in the last zone we have (+1). (+1) in the defense is used in a way that there always needs to be one center back able to
+handle balls in the depth. Full backs man-mark opposite wingers.</p>
+<h2 id="high-press">High-press</h2>
+<p>Playing with front three offers a nice option for aggresive high-press. Front players stay tight, with clear tendency to push the play to sides,
+where there are always less options. Wingers need to be able to do aggressive run to the side-line. Attacking midfielder man-marks opposition&rsquo;s
+defensive midfield and 2 central midfielders man-mark opposition&rsquo;s 2 midfielders.</p>
+<h2 id="build-up">Build-up</h2>
+<p>In the build-up, I try to bring down one defensive midfielder in order to create numerical advantage and exploit the space for center-backs
+so they could push the ball up the field.</p>
+<h2 id="coming-up-next">Coming-up next</h2>
+<p>More about each specific moment in the football game can be found in next blog posts.</p>
 
   </div>
 
@@ -147,7 +193,7 @@ StatsPerform uses <strong>Opta</strong> in the background to generate <strong>va
 
 <div class="share-buttons">
 
-    <a target="_blank" rel="noopener noreferrer" aria-label="share Introduction to statistical football analysis on linkedin"
+    <a target="_blank" rel="noopener noreferrer" aria-label="share 4-2-3-1 Part I: General on linkedin"
         href="https://www.linkedin.com/in/andi-skrgat-658b471b8/">
         <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve">
             <path

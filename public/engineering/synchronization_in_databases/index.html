@@ -5,11 +5,11 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
-<title>Introduction to statistical football analysis | Andi Skrgat</title>
+<title>Synchronizing data access in databases | Andi Skrgat</title>
 <meta name="keywords" content="" />
-<meta name="description" content="In the last few years, football analysis has been greatly enhanced with computer vision techniques based on artificial intelligence. Such products allow experienced analysts to extract many useful information in a much shorter time than doing it manually. This blog post dives into some of industry-level products.">
+<meta name="description" content="Databases expose their data in a parallel way to multiple users. However, synchronization must occur so that in every moment of its lifespan, the database&#39;s state is consistent.">
 <meta name="author" content="Andi Skrgat">
-<link rel="canonical" href="https://as51340.github.io/blog/football/introduction_to_football_analysis/" />
+<link rel="canonical" href="https://as51340.github.io/blog/engineering/synchronization_in_databases/" />
 <link crossorigin="anonymous" href="/blog/assets/css/stylesheet.min.a9d03b93f465f581a1d22dc8a98d36bb5a5055810de2090c66bc5d9124cf4d03.css" integrity="sha256-qdA7k/Rl9YGh0i3IqY02u1pQVYEN4gkMZrxdkSTPTQM=" rel="preload stylesheet" as="style">
 <script defer crossorigin="anonymous" src="/blog/assets/js/highlight.min.27cd435cc9ed6abb4b496581b151804f79f366c412620272bb94e2f5f598ebcc.js" integrity="sha256-J81DXMntartLSWWBsVGAT3nzZsQSYgJyu5Ti9fWY68w="
     onload="hljs.initHighlightingOnLoad();"></script>
@@ -126,20 +126,63 @@
   <header class="post-header">
     <div class="breadcrumbs"><a href="https://as51340.github.io/blog/">Home</a></div>
     <h1 class="post-title">
-      Introduction to statistical football analysis
+      Synchronizing data access in databases
     </h1>
     <div class="post-description">
-      In the last few years, football analysis has been greatly enhanced with computer vision techniques based on artificial intelligence. Such products allow experienced analysts to extract many useful information in a much shorter time than doing it manually. This blog post dives into some of industry-level products.
+      Databases expose their data in a parallel way to multiple users. However, synchronization must occur so that in every moment of its lifespan, the database&#39;s state is consistent.
     </div>
-    <div class="post-meta">2 min&nbsp;·&nbsp;Andi Skrgat</div>
-  </header> 
+    <div class="post-meta">4 min&nbsp;·&nbsp;Andi Skrgat</div>
+  </header> <div class="toc">
+    <details >
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">Table of Contents</span>
+        </summary>
+
+        <div class="inner"><ul>
+                <li>
+                    <a href="#latches-vs-locks" aria-label="Latches vs. locks">Latches vs. locks</a></li>
+                <li>
+                    <a href="#what-are-latches-preferred-properties" aria-label="What are latches&amp;rsquo; preferred properties?">What are latches&rsquo; preferred properties?</a><ul>
+                        
+                <li>
+                    <a href="#spinlock" aria-label="Spinlock">Spinlock</a></li>
+                <li>
+                    <a href="#mutex" aria-label="Mutex">Mutex</a></li>
+                <li>
+                    <a href="#adaptive-spinlock" aria-label="Adaptive Spinlock">Adaptive Spinlock</a></li>
+                <li>
+                    <a href="#queue-based-spinlock" aria-label="Queue-based Spinlock">Queue-based Spinlock</a>
+                </li>
+            </ul>
+            </li>
+            </ul>
+        </div>
+    </details>
+</div>
 
   <div class="post-content">
-  <p>Two categories of products used in the industry can be identified. First category of products mainly deal with a support for <strong>event tagging and drawing visualizations</strong>. One of the best examples of a first category is <a href="https://once.de/">Once</a>, the product which has the possibility to tag actions based on the information about <strong>action&rsquo;s end result</strong>.<br>
-<a href="https://www.statsperform.com/">StatsPerform</a> is a main representative of the second category of products supporting <strong>ball and player tracking</strong>. Except for an incredible amount of information it can provide analysts with, such platform allows <strong>analysis of opponent team without any GPS devices required</strong>. They distinguish themself from the rest of the competition by an extensive tactical analysis. Edge analysis provides the user with precise tactical insights based on the tracking data. <strong>Team shape analysis</strong> detects game moments in which <strong>opponent team makes mistakes</strong>, <strong>space can be exploited</strong> and quantifies all that with interpretable numbers for an end user. Most of the features are based on complex <strong>AI models</strong>. <strong>The PossessionValue model</strong> measures player&rsquo;s impact on the probability of his team scoring in the next 10 seconds of the match. Recently, <strong>quantifying pressure players impose in a specific game moment and detailed set-piece analysis</strong> are some of the most important parts of the game on which much focus has been put.<br>
-StatsPerform uses <strong>Opta</strong> in the background to generate <strong>vast amount of match-related data</strong>. This data is collected in the <strong>blended process of combining AI computer vision models with human annotators</strong> who thorougly correct system&rsquo;s inefficiencies.
-<a href="https://www.spiideo.com/">Spiideo</a> uses AI on a level above, to obtain <strong>high-quality panomaric footages</strong> without human intervention required. There are many other video analysis software solutions like <a href="https://www.hudl.com/">Hudl</a>, <a href="https://www.dartfish.com/">Dartfish</a>, <a href="https://longomatch.com/en/">Longomatch</a>, <a href="https://www.nacsport.com/index.php?lc=en-us">Nacsport</a> etc., no offend to others not mentioned. Except for StatsPerform, more-less all systems are mainly visualization tools wih only a basic capabilities of generating data. However, they really excel in creating powerful visualization, tagging capabilities and its immense number of dashboards that can be created.</p>
-<p>This blog post gives a basic introduction to industry-level products useful for the football analysis. In the next blog post, I will try to explain in more details how object detection is useful for such tasks. Until the next time 🫡.</p>
+  <h2 id="latches-vs-locks">Latches vs. locks</h2>
+<p>Latches and locks are often interchangeably used to describe the synchronization scheme of a database. However, there are subtle differences in their usage. Locks are preferred when talking about users&rsquo; interaction with the database through transactions. For example, locks as such are used in implementing waits-for-graph in deadlock detection, in transaction abort (full or partial) and in transaction timeout. On the other side, latches are used for ensuring consistency in parallel data structures which constitute the core of the database&rsquo;s storage engine. In most relational databases this is some variant of a B-Tree but choices are various, from deterministic data structures up to randomized ones like the skip list.</p>
+<h2 id="what-are-latches-preferred-properties">What are latches&rsquo; preferred properties?</h2>
+<p>Although latches are primarily used to protect critical sections of the code to provide consistency of a data structure, the basic thing we would like from our latch is that it doesn&rsquo;t slow down the execution path in situations when threads don&rsquo;t create high contention in a system. This is very important because, in parallel systems, the number of execution paths that a system with multiple threads can take is very high. For example, I read in the book Clean Code by Uncle Bob that the following <code>getNextId</code> function can take 12870 execution paths when executed by only two threads (didn&rsquo;t get into details why).</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">X</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="kt">int</span> <span class="n">lastIdUsed</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">getNextId</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="o">++</span><span class="n">lastIdUsed</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">};</span>
+</code></pre></div><p>The second thing we would like from latches is that it doesn&rsquo;t take a lot of memory because (for B-Tree) every node needs to have its latch. Now if <code>pthread_mutex_t</code> is used, which is of size 64B, this can be quite costly. (In c++ <code>std::mutex</code> is implemented using <code>pthread_mutex_t</code> ) And also as a side note, the latch is usually a part of the node struct (or class) to reduce the cost of ensuring cache coherence.</p>
+<h3 id="spinlock">Spinlock</h3>
+<p>There are various implementations of a spinlock and many different optimizations and ideas that one can use to implement a spinlock but the core concept behind a spinlock is that it performs so-called &ldquo;busy waiting&rdquo;. So if one thread acquired the right to use some object (node in a B-Tree example), the other thread spins in a loop testing whether the object is available. Such an approach is viable only when locks are held shortly by each thread since there is no OS involvement, otherwise, it is too costly to spend CPU time.</p>
+<h3 id="mutex">Mutex</h3>
+<p>Mutex addresses the problem of a &ldquo;busy loop&rdquo; with the help of OS. The underlying operating system will deschedule the thread and avoid unnecessary CPU work time by waking the waiting thread once the resource becomes available. However, pure mutex has also a big performance cost since thread deschedulation and waking are expensive operations (around 25ns). However, if I am not wrong, most modern systems use some kind of a hybrid scheme which allows the thread to first spin for some time and then go to sleep if the resource is still not available therefore trying to make some kind of a compromise between two solutions.</p>
+<h3 id="adaptive-spinlock">Adaptive Spinlock</h3>
+<p>Adaptive spinlock uses also a hybrid scheme but improves in a way that the thread doesn&rsquo;t get descheduled from OS but rather stored in a &ldquo;parking lot&rdquo;. The trick is that such a &ldquo;parking lot&rdquo; is not managed by OS so it is much faster than a pure mutex. I know about Apple&rsquo;s WTF::ParkingLot but am not aware of anything else.</p>
+<h3 id="queue-based-spinlock">Queue-based Spinlock</h3>
+<p>Queue-based Spinlock is used in the Linux kernel at multiple places. It improves the basic spinlock and the standard mutex in a way that when the thread cannot acquire the resource, it saves &ldquo;the pointer&rdquo; to the thread which currently holds the resource so that the resource is available, it can get notified very fast without big overhead.</p>
+<p>In this blog post, I only scratched the surface locks and latches in the world of databases. Let me know about any comments, suggestions, corrections 🫡.</p>
+<p>NOTE: The majority of materials are taken from Andy Pavlo&rsquo;s lectures from CMU.</p>
 
   </div>
 
@@ -147,7 +190,7 @@ StatsPerform uses <strong>Opta</strong> in the background to generate <strong>va
 
 <div class="share-buttons">
 
-    <a target="_blank" rel="noopener noreferrer" aria-label="share Introduction to statistical football analysis on linkedin"
+    <a target="_blank" rel="noopener noreferrer" aria-label="share Synchronizing data access in databases on linkedin"
         href="https://www.linkedin.com/in/andi-skrgat-658b471b8/">
         <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve">
             <path

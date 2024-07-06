@@ -10,8 +10,8 @@
 <meta name="description" content="In the first part, several football products were mistakenly not taken into account. This blog post wraps up the story about analysis systems while explaining how can data be used to create meaningful statistics.">
 <meta name="author" content="Andi Skrgat">
 <link rel="canonical" href="https://as51340.github.io/blog/football/football_analysis_products_part2/" />
-<link crossorigin="anonymous" href="/blog/assets/css/stylesheet.min.7bfe087ae72df31787ec7a1360dd05ee246a179b51cf7a30a904b39d7f813b69.css" integrity="sha256-e/4Ieuct8xeH7HoTYN0F7iRqF5tRz3owqQSznX&#43;BO2k=" rel="preload stylesheet" as="style">
-<script defer crossorigin="anonymous" src="/blog/assets/js/highlight.min.7680afc38aa6b15ddf158a4f3780b7b1f7dde7e91d26f073e6229bb7a0793c92.js" integrity="sha256-doCvw4qmsV3fFYpPN4C3sffd5&#43;kdJvBz5iKbt6B5PJI="
+<link crossorigin="anonymous" href="/blog/assets/css/stylesheet.min.a9d03b93f465f581a1d22dc8a98d36bb5a5055810de2090c66bc5d9124cf4d03.css" integrity="sha256-qdA7k/Rl9YGh0i3IqY02u1pQVYEN4gkMZrxdkSTPTQM=" rel="preload stylesheet" as="style">
+<script defer crossorigin="anonymous" src="/blog/assets/js/highlight.min.27cd435cc9ed6abb4b496581b151804f79f366c412620272bb94e2f5f598ebcc.js" integrity="sha256-J81DXMntartLSWWBsVGAT3nzZsQSYgJyu5Ti9fWY68w="
     onload="hljs.initHighlightingOnLoad();"></script>
 <link rel="icon" href="https://as51340.github.io/images/favicon.ico">
 <link rel="icon" type="image/png" sizes="16x16" href="https://as51340.github.io/images/favicon-16x16.png">
@@ -103,8 +103,8 @@
                 <a href="/blog" title="Home"><span>Home</span></a>
             </li>
             <li>
-                <a href="https://as51340.github.io/blog/databases/" title="Databases">
-                    <span>Databases</span>
+                <a href="https://as51340.github.io/blog/engineering/" title="Engineering">
+                    <span>Engineering</span>
                 </a>
             </li>
             <li>
@@ -124,7 +124,7 @@
 
 <article class="post-single">
   <header class="post-header">
-    <div class="breadcrumbs"><a href="https://as51340.github.io/blog/">Home</a>&nbsp;»&nbsp;<a href="https://as51340.github.io/blog/football/">Football</a></div>
+    <div class="breadcrumbs"><a href="https://as51340.github.io/blog/">Home</a></div>
     <h1 class="post-title">
       Football analysis products part II
     </h1>
@@ -135,7 +135,7 @@
   </header> 
 
   <div class="post-content">
-  <p>There are two types of data you can work with when doing football analysis. The first type is tracking data which provides us with information about the position of every player and the ball at every moment of the match. Such data is already enough to extract a variety of statistical info related to players such as distance covered, number of sprints, sprint classification into categories, player speed and acceleration through time etc. It is also possible to create a pitch control model that would explain how well the team covers the pitch and how each player contributes to such a result. However, it is hard to create a meaningful pitch control model without taking into account the ball&rsquo;s position mostly since players' actions are highly dependent on the ball&rsquo;s position but more on that in some other post. Tracking the ball also comes with functionalities like counting passes, line-breaking passes, possession value, expected threat, expected assists etc. The second data type is event-based data. Event-based data detects every pass in the game, corner, goal kick, free kick&hellip; basically, anything you care about in the match. <a href="https://www.statsperform.com/opta-vision/">Opta vision</a> provides both types of data to the user and they claim to do so within 24 hours. Event data is manually annotated by their team while tracking is generated automatically using computer vision based on deep learning. Interestingly, this automatic generation of data is quite a fresh feature (last year). What is left unclear to me is whether this process is completely automated or enhanced with some kind of a human-in-the-loop system. Now to the forgotten products:
+  <p>There are two types of data you can work with when doing football analysis. The first type is tracking data which provides us with information about the position of every player and the ball at every moment of the match. Such data is already enough to extract a variety of statistical info related to players such as distance covered, number of sprints, sprint classification into categories, player speed and acceleration through time etc. It is also possible to create a pitch control model that would explain how well the team covers the pitch and how each player contributes to such a result. However, it is hard to create a meaningful pitch control model without taking into account the ball&rsquo;s position mostly since players&rsquo; actions are highly dependent on the ball&rsquo;s position but more on that in some other post. Tracking the ball also comes with functionalities like counting passes, line-breaking passes, possession value, expected threat, expected assists etc. The second data type is event-based data. Event-based data detects every pass in the game, corner, goal kick, free kick&hellip; basically, anything you care about in the match. <a href="https://www.statsperform.com/opta-vision/">Opta vision</a> provides both types of data to the user and they claim to do so within 24 hours. Event data is manually annotated by their team while tracking is generated automatically using computer vision based on deep learning. Interestingly, this automatic generation of data is quite a fresh feature (last year). What is left unclear to me is whether this process is completely automated or enhanced with some kind of a human-in-the-loop system. Now to the forgotten products:
 <a href="https://statsports.com/">StatsSport</a> is a platform which creates tracking data by using GPS devices. It comes with an option to export CSV data. <a href="https://www.hudl.com/">Hudl</a> works on the same principle and also employs GPS devices for using data. The last example is also well known <a href="https://www.catapultsports.com/">Catapult</a> platform which is used by numerous clubs from the big five football leagues. Except for Opta, several other companies are offering optical tracking solutions. <a href="https://www.dartfish.com/">Dartfish</a> is used in numerous sports. For example in hockey, they use 4 top and 6 side cameras for player recognition. Considered one of the most precise platforms comes <a href="https://chyron.com/">Cyhron</a>. Their optical tracking solution apparently works precise enough to be within 7cm of mass accuracy as the one from GPS trackers which is superb quality. They also have a great feature with skeleton tracking. <a href="https://www.hawkeyeinnovations.com/">Hawkeye Innovations by Sony</a> are in a bit different industry since one of their most notorious partnerships is with Manchester City whose main purpose is to increase fan engagement. Last but not least, <a href="https://www.secondspectrum.com/index.html">Second Spectrum</a> tries to provide a unique experience to the public to concentrate on understanding the match as much as possible.</p>
 <p>&hellip;</p>
 

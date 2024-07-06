@@ -5,6 +5,10 @@
     <link>https://as51340.github.io/blog/about/</link>
     <description>Recent content in About me on Andi Skrgat</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language><atom:link href="https://as51340.github.io/blog/about/index.xml" rel="self" type="application/rss+xml" />
+    <language>en-us</language>
+    
+	<atom:link href="https://as51340.github.io/blog/about/index.xml" rel="self" type="application/rss+xml" />
+    
+    
   </channel>
 </rss>

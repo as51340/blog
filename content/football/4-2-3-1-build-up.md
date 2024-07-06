@@ -1,5 +1,5 @@
 ---
-title: "4-2-3-1 Part II: Build-up"
+title: "4-2-3-1 Part II a): Build-up"
 type: page
 description: "The best way to learn something is by trying to explain it to others. I am starting a series of blog posts about 4-2-3-1 formation and 
 how do I implement when coaching. In this blog-post find out about several tactical ideas in the build-up of 4-2-3-1 formation."
@@ -8,12 +8,8 @@ topic: Football
 
 ## Introduction
 
-TODO: fix
-Usually playing against 4-3-3 and 4-2-3-1 where teams press with 2 or at most 3 players. When pressing with 3 this is usually not on very 
+I am usually playing against 4-3-3 and 4-2-3-1 formations where teams press with 2 or at most 3 players. When pressing with 3 this is usually not on very 
 high level so same ideas are used. 
-
-General idea = have diamond in the defense.
-
 
 ## Situation I: Opposite striker presses
 
@@ -40,13 +36,6 @@ wingers play 1vs.1 on our full-backs. That's why it is important that center-bac
 *When CB(#4) has the space, he exploits it. That will trigger the winger(#7) who will find himself in a difficult situation where he needs to defend 2vs.1 on the side.
 When the 1st line of pressure is won, options in depth have a lot of sense. E.g opposite winger(#7) who makes diagonal run behind the full-back(#3).*
 
-
-
-
-
-
-
-
 ## Instructions
 
 As we saw, there are several options but what is important is how to give players simple, intuitive instructions that they can use 
@@ -57,4 +46,5 @@ when various situations occur.
 - center-backs be brave, exploit the space
 - full-backs seek for space
 - full-backs don't limit your space to the side, come inside 
+- strikers, you have to move, search for space and do runs into the depth, even if you won't get the ball
 

@@ -1,47 +1,73 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <url>
+    <loc>https://as51340.github.io/blog/football/4-2-3-1-general/</loc>
+  </url>
+  
+  <url>
+    <loc>https://as51340.github.io/blog/football/4-2-3-1-build-up/</loc>
+  </url>
+  
   <url>
     <loc>https://as51340.github.io/blog/about/</loc>
-  </url><url>
-    <loc>https://as51340.github.io/blog/</loc>
-  </url><url>
-    <loc>https://as51340.github.io/blog/databases/</loc>
-  </url><url>
-    <loc>https://as51340.github.io/blog/articles/</loc>
-  </url><url>
-    <loc>https://as51340.github.io/blog/categories/</loc>
-  </url><url>
-    <loc>https://as51340.github.io/blog/databases/optimal_index_in_limited_environment/</loc>
-  </url><url>
-    <loc>https://as51340.github.io/blog/contact/</loc>
-  </url><url>
-    <loc>https://as51340.github.io/blog/databases/durability_in_databases/</loc>
-  </url><url>
-    <loc>https://as51340.github.io/blog/football/football_analysis_products_part2/</loc>
-  </url><url>
-    <loc>https://as51340.github.io/blog/football/</loc>
-  </url><url>
-    <loc>https://as51340.github.io/blog/databases/high_availability/</loc>
-  </url><url>
-    <loc>https://as51340.github.io/blog/databases/larger_than_memory_architecture/</loc>
-  </url><url>
-    <loc>https://as51340.github.io/blog/football/introduction_to_football_analysis/</loc>
-  </url><url>
-    <loc>https://as51340.github.io/blog/projects/math-brain-trainer/</loc>
-  </url><url>
-    <loc>https://as51340.github.io/blog/databases/networking/</loc>
-  </url><url>
-    <loc>https://as51340.github.io/blog/projects/</loc>
-  </url><url>
-    <loc>https://as51340.github.io/blog/articles/article/</loc>
-  </url><url>
-    <loc>https://as51340.github.io/blog/databases/elasticsearch/</loc>
-  </url><url>
-    <loc>https://as51340.github.io/blog/databases/synchronization_in_databases/</loc>
-  </url><url>
-    <loc>https://as51340.github.io/blog/tags/</loc>
-  </url><url>
-    <loc>https://as51340.github.io/blog/databases/jepsen/</loc>
   </url>
+  
+  <url>
+    <loc>https://as51340.github.io/blog/</loc>
+  </url>
+  
+  <url>
+    <loc>https://as51340.github.io/blog/engineering/</loc>
+  </url>
+  
+  <url>
+    <loc>https://as51340.github.io/blog/categories/</loc>
+  </url>
+  
+  <url>
+    <loc>https://as51340.github.io/blog/engineering/optimal_index_in_limited_environment/</loc>
+  </url>
+  
+  <url>
+    <loc>https://as51340.github.io/blog/engineering/durability_in_databases/</loc>
+  </url>
+  
+  <url>
+    <loc>https://as51340.github.io/blog/football/football_analysis_products_part2/</loc>
+  </url>
+  
+  <url>
+    <loc>https://as51340.github.io/blog/football/</loc>
+  </url>
+  
+  <url>
+    <loc>https://as51340.github.io/blog/engineering/high_availability/</loc>
+  </url>
+  
+  <url>
+    <loc>https://as51340.github.io/blog/engineering/larger_than_memory_architecture/</loc>
+  </url>
+  
+  <url>
+    <loc>https://as51340.github.io/blog/football/introduction_to_football_analysis/</loc>
+  </url>
+  
+  <url>
+    <loc>https://as51340.github.io/blog/engineering/elasticsearch/</loc>
+  </url>
+  
+  <url>
+    <loc>https://as51340.github.io/blog/engineering/synchronization_in_databases/</loc>
+  </url>
+  
+  <url>
+    <loc>https://as51340.github.io/blog/tags/</loc>
+  </url>
+  
+  <url>
+    <loc>https://as51340.github.io/blog/engineering/jepsen/</loc>
+  </url>
+  
 </urlset>
