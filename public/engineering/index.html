@@ -5,12 +5,11 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
-<title>About me | Andi Skrgat</title>
+<title>Articles | Andi Skrgat</title>
 <meta name="keywords" content="" />
-<meta name="description" content="I currently work as a software engineer in Memgraph working mostly on enhancing database&rsquo;s functionality :male-technologist:. In my free time I enjoy playing and thinking about football ⚽. Hence, you may find few articles about data science applications in football. I also enjoy reading, hiking and running 📚 ⛰ 🏃.
-Contact If you think I wrote something wrong, have any suggestion, question or want a chat about some topic, I would be extremely happy if you send me a message via LinkedIn or email ✉️.">
+<meta name="description" content="Articles - Andi Skrgat">
 <meta name="author" content="Andi Skrgat">
-<link rel="canonical" href="https://as51340.github.io/blog/about/" />
+<link rel="canonical" href="https://as51340.github.io/blog/engineering/" />
 <link crossorigin="anonymous" href="/blog/assets/css/stylesheet.min.a9d03b93f465f581a1d22dc8a98d36bb5a5055810de2090c66bc5d9124cf4d03.css" integrity="sha256-qdA7k/Rl9YGh0i3IqY02u1pQVYEN4gkMZrxdkSTPTQM=" rel="preload stylesheet" as="style">
 <link rel="icon" href="https://as51340.github.io/images/favicon.ico">
 <link rel="icon" type="image/png" sizes="16x16" href="https://as51340.github.io/images/favicon-16x16.png">
@@ -19,7 +18,7 @@ Contact If you think I wrote something wrong, have any suggestion, question or w
 <link rel="mask-icon" href="https://as51340.github.io/images/apple-touch-icon.png">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" type="application/rss+xml" href="https://as51340.github.io/blog/about/index.xml">
+<link rel="alternate" type="application/rss+xml" href="https://as51340.github.io/blog/engineering/index.xml">
 <noscript>
     <style>
         #theme-toggle,
@@ -104,7 +103,7 @@ Contact If you think I wrote something wrong, have any suggestion, question or w
             </li>
             <li>
                 <a href="https://as51340.github.io/blog/engineering/" title="Engineering">
-                    <span>Engineering</span>
+                    <span class="active">Engineering</span>
                 </a>
             </li>
             <li>
@@ -114,7 +113,7 @@ Contact If you think I wrote something wrong, have any suggestion, question or w
             </li>
             <li>
                 <a href="https://as51340.github.io/blog/about/" title="About me">
-                    <span class="active">About me</span>
+                    <span>About me</span>
                 </a>
             </li>
         </ul>
@@ -122,14 +121,78 @@ Contact If you think I wrote something wrong, have any suggestion, question or w
 </header>
 <main class="main"> 
 <header class="page-header"><div class="breadcrumbs"><a href="https://as51340.github.io/blog/">Home</a></div>
-  <h1>About me</h1>
+  <h1>Articles</h1>
 </header>
-<div class="post-content">
-<p>I currently work as a software engineer in Memgraph working mostly on enhancing database&rsquo;s functionality :male-technologist:. In my free time I enjoy playing and thinking about football ⚽. Hence, you may find few articles about data science applications in football. I also enjoy reading, hiking and running 📚 ⛰ 🏃.</p>
-<h2 id="contact">Contact</h2>
-<p>If you think I wrote something wrong, have any suggestion, question or want a chat about some topic, I would be extremely happy if you send me a message via <a href="https://www.linkedin.com/in/andi-skrgat-658b471b8/">LinkedIn</a> or <a href="mailto:andi8647@gmail.com">email</a> ✉️.</p>
 
-</div>
+
+  <article class="post-entry"> 
+    <header class="entry-header">
+      <h2>Choosing optimal index with limited information available
+      </h2>
+    </header>
+    <section class="entry-content">
+      <p>Although indexes are simple at its core, yielding an optimal query plan that uses them requires heuristic approach 🤔. Check out how we at Memgraph introduced probability theory to significantly speed up bulk loading workloads 📈.</p>
+    </section>
+    <footer class="entry-footer">1 min&nbsp;·&nbsp;Andi Skrgat</footer>
+    <a class="entry-link" aria-label="post link to Choosing optimal index with limited information available" href="https://as51340.github.io/blog/engineering/optimal_index_in_limited_environment/"></a>
+</article>
+
+
+  <article class="post-entry"> 
+    <header class="entry-header">
+      <h2>Durability theory in databases and How Does Memgraph Ensure Data Durability?
+      </h2>
+    </header>
+    <section class="entry-content">
+      <p>Out of 4 letters ACID, D is probably the most important for businesses since they cannot afford any data loss. Rest assured, Memgraph follows best practices to ensure the data is durable 😄</p>
+    </section>
+    <footer class="entry-footer">1 min&nbsp;·&nbsp;Andi Skrgat</footer>
+    <a class="entry-link" aria-label="post link to Durability theory in databases and How Does Memgraph Ensure Data Durability?" href="https://as51340.github.io/blog/engineering/durability_in_databases/"></a>
+</article>
+
+
+  <article class="post-entry"> 
+    <header class="entry-header">
+      <h2>High availability Memgraph
+      </h2>
+    </header>
+    <section class="entry-content">
+      <p>Distributed systems are hard.</p>
+    </section>
+    <footer class="entry-footer">1 min&nbsp;·&nbsp;Andi Skrgat</footer>
+    <a class="entry-link" aria-label="post link to High availability Memgraph" href="https://as51340.github.io/blog/engineering/high_availability/"></a>
+</article>
+
+
+  <article class="post-entry"> 
+    <header class="entry-header">
+      <h2>In-memory vs. disk-based databases:Why do you need a larger than memory architecture?
+      </h2>
+    </header>
+    <section class="entry-content">
+      <p>Memgraph is an in-memory graph database that recently added support for working with data that cannot fit into memory. This allows users with smaller budgets to still load large graphs to Memgraph without paying for (more) expensive RAM. However, expanding the main-memory graph database to support disk storage is, by all means, a complex engineering endeavor. Let’s break this process down into pieces.</p>
+    </section>
+    <footer class="entry-footer">1 min&nbsp;·&nbsp;Andi Skrgat</footer>
+    <a class="entry-link" aria-label="post link to In-memory vs. disk-based databases:Why do you need a larger than memory architecture?" href="https://as51340.github.io/blog/engineering/larger_than_memory_architecture/"></a>
+</article>
+
+
+  <article class="post-entry"> 
+    <header class="entry-header">
+      <h2>Synchronize data between Memgraph and Elasticsearch
+      </h2>
+    </header>
+    <section class="entry-content">
+      <p>As part of my job at Memgraph, I worked on a challenging task of synchronizing text-search tool Elasticsearch with Memgraph graph database.</p>
+    </section>
+    <footer class="entry-footer">1 min&nbsp;·&nbsp;Andi Skrgat</footer>
+    <a class="entry-link" aria-label="post link to Synchronize data between Memgraph and Elasticsearch" href="https://as51340.github.io/blog/engineering/elasticsearch/"></a>
+</article>
+<footer class="page-footer">
+  <nav class="pagination">
+    <a class="next" href="https://as51340.github.io/blog/engineering/page/2/"> »</a>
+  </nav>
+</footer>
     </main>
     
 <footer class="footer">

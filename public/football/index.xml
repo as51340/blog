@@ -1,11 +1,35 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Football on Andi Skrgat</title>
+    <title>Footballs on Andi Skrgat</title>
     <link>https://as51340.github.io/blog/football/</link>
-    <description>Recent content in Football on Andi Skrgat</description>
+    <description>Recent content in Footballs on Andi Skrgat</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language><atom:link href="https://as51340.github.io/blog/football/index.xml" rel="self" type="application/rss+xml" />
+    <language>en-us</language>
+    
+	<atom:link href="https://as51340.github.io/blog/football/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>4-2-3-1 Part I: General</title>
+      <link>https://as51340.github.io/blog/football/4-2-3-1-general/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://as51340.github.io/blog/football/4-2-3-1-general/</guid>
+      <description>General As a coach, my currently favourite formation is 4-2-3-1. It is very simple, especially when taking into account that I am explaining it through the season to the kids. Compared to the simplest 4-4-2, it offers an additional midfielder by dropping one striker into half-space.
+I like the formation because it offers plenty of attacking options while maintaining defensive stability. Two central (defensive) midfielders form solid base when building the attack.</description>
+    </item>
+    
+    <item>
+      <title>4-2-3-1 Part II: Build-up</title>
+      <link>https://as51340.github.io/blog/football/4-2-3-1-build-up/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://as51340.github.io/blog/football/4-2-3-1-build-up/</guid>
+      <description>Introduction I am usually playing against 4-3-3 and 4-2-3-1 formations where teams press with 2 or at most 3 players. When pressing with 3 this is usually not on very high level so same ideas are used.
+Situation I: Opposite striker presses When only 1 opposite striker is pressing, the situation can be usually solved with center-backs and goalkeeper only in the 1st zone. The ball is played from the GK to one CB who can try to push into the midfield.</description>
+    </item>
+    
     <item>
       <title>Football analysis products part II</title>
       <link>https://as51340.github.io/blog/football/football_analysis_products_part2/</link>

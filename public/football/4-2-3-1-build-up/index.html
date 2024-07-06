@@ -5,11 +5,11 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
-<title>Introduction to statistical football analysis | Andi Skrgat</title>
+<title>4-2-3-1 Part II: Build-up | Andi Skrgat</title>
 <meta name="keywords" content="" />
-<meta name="description" content="In the last few years, football analysis has been greatly enhanced with computer vision techniques based on artificial intelligence. Such products allow experienced analysts to extract many useful information in a much shorter time than doing it manually. This blog post dives into some of industry-level products.">
+<meta name="description" content="The best way to learn something is by trying to explain it to others. I am starting a series of blog posts about 4-2-3-1 formation and how do I implement when coaching. In this blog-post find out about several tactical ideas in the build-up of 4-2-3-1 formation.">
 <meta name="author" content="Andi Skrgat">
-<link rel="canonical" href="https://as51340.github.io/blog/football/introduction_to_football_analysis/" />
+<link rel="canonical" href="https://as51340.github.io/blog/football/4-2-3-1-build-up/" />
 <link crossorigin="anonymous" href="/blog/assets/css/stylesheet.min.a9d03b93f465f581a1d22dc8a98d36bb5a5055810de2090c66bc5d9124cf4d03.css" integrity="sha256-qdA7k/Rl9YGh0i3IqY02u1pQVYEN4gkMZrxdkSTPTQM=" rel="preload stylesheet" as="style">
 <script defer crossorigin="anonymous" src="/blog/assets/js/highlight.min.27cd435cc9ed6abb4b496581b151804f79f366c412620272bb94e2f5f598ebcc.js" integrity="sha256-J81DXMntartLSWWBsVGAT3nzZsQSYgJyu5Ti9fWY68w="
     onload="hljs.initHighlightingOnLoad();"></script>
@@ -126,20 +126,66 @@
   <header class="post-header">
     <div class="breadcrumbs"><a href="https://as51340.github.io/blog/">Home</a></div>
     <h1 class="post-title">
-      Introduction to statistical football analysis
+      4-2-3-1 Part II: Build-up
     </h1>
     <div class="post-description">
-      In the last few years, football analysis has been greatly enhanced with computer vision techniques based on artificial intelligence. Such products allow experienced analysts to extract many useful information in a much shorter time than doing it manually. This blog post dives into some of industry-level products.
+      The best way to learn something is by trying to explain it to others. I am starting a series of blog posts about 4-2-3-1 formation and how do I implement when coaching. In this blog-post find out about several tactical ideas in the build-up of 4-2-3-1 formation.
     </div>
     <div class="post-meta">2 min&nbsp;·&nbsp;Andi Skrgat</div>
-  </header> 
+  </header> <div class="toc">
+    <details >
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">Table of Contents</span>
+        </summary>
+
+        <div class="inner"><ul>
+                <li>
+                    <a href="#introduction" aria-label="Introduction">Introduction</a></li>
+                <li>
+                    <a href="#situation-i-opposite-striker-presses" aria-label="Situation I: Opposite striker presses">Situation I: Opposite striker presses</a></li>
+                <li>
+                    <a href="#instructions" aria-label="Instructions">Instructions</a>
+                </li>
+            </ul>
+        </div>
+    </details>
+</div>
 
   <div class="post-content">
-  <p>Two categories of products used in the industry can be identified. First category of products mainly deal with a support for <strong>event tagging and drawing visualizations</strong>. One of the best examples of a first category is <a href="https://once.de/">Once</a>, the product which has the possibility to tag actions based on the information about <strong>action&rsquo;s end result</strong>.<br>
-<a href="https://www.statsperform.com/">StatsPerform</a> is a main representative of the second category of products supporting <strong>ball and player tracking</strong>. Except for an incredible amount of information it can provide analysts with, such platform allows <strong>analysis of opponent team without any GPS devices required</strong>. They distinguish themself from the rest of the competition by an extensive tactical analysis. Edge analysis provides the user with precise tactical insights based on the tracking data. <strong>Team shape analysis</strong> detects game moments in which <strong>opponent team makes mistakes</strong>, <strong>space can be exploited</strong> and quantifies all that with interpretable numbers for an end user. Most of the features are based on complex <strong>AI models</strong>. <strong>The PossessionValue model</strong> measures player&rsquo;s impact on the probability of his team scoring in the next 10 seconds of the match. Recently, <strong>quantifying pressure players impose in a specific game moment and detailed set-piece analysis</strong> are some of the most important parts of the game on which much focus has been put.<br>
-StatsPerform uses <strong>Opta</strong> in the background to generate <strong>vast amount of match-related data</strong>. This data is collected in the <strong>blended process of combining AI computer vision models with human annotators</strong> who thorougly correct system&rsquo;s inefficiencies.
-<a href="https://www.spiideo.com/">Spiideo</a> uses AI on a level above, to obtain <strong>high-quality panomaric footages</strong> without human intervention required. There are many other video analysis software solutions like <a href="https://www.hudl.com/">Hudl</a>, <a href="https://www.dartfish.com/">Dartfish</a>, <a href="https://longomatch.com/en/">Longomatch</a>, <a href="https://www.nacsport.com/index.php?lc=en-us">Nacsport</a> etc., no offend to others not mentioned. Except for StatsPerform, more-less all systems are mainly visualization tools wih only a basic capabilities of generating data. However, they really excel in creating powerful visualization, tagging capabilities and its immense number of dashboards that can be created.</p>
-<p>This blog post gives a basic introduction to industry-level products useful for the football analysis. In the next blog post, I will try to explain in more details how object detection is useful for such tasks. Until the next time 🫡.</p>
+  <h2 id="introduction">Introduction</h2>
+<p>I am usually playing against 4-3-3 and 4-2-3-1 formations where teams press with 2 or at most 3 players. When pressing with 3 this is usually not on very
+high level so same ideas are used.</p>
+<h2 id="situation-i-opposite-striker-presses">Situation I: Opposite striker presses</h2>
+<p>When only 1 opposite striker is pressing, the situation can be usually solved with center-backs and goalkeeper only in the 1st zone.
+The ball is played from the GK to one CB who can try to push into the midfield. If this isn&rsquo;t possible, we go back to the GK and circle
+around to the next CB. As CB is trying to move the ball forward, GK should come few meters out so that ball circulation is faster.</p>
+<p><img loading="lazy" src="/blog/images/4_2_3_1_build_up_option_i.png" alt="4-2-3-1 build-up option I"  title="4-2-3-1"  />
+
+<em>Diagram I: Since CBs and GK effectively play 3vs.1, midfielders should push higher-up the pitch and play in half-spaces. Full-backs also push in order
+to pin opposite wingers.</em></p>
+<p>Usually, 1-2 circulations from one CB to another CB is enough since one striker alone cannot cover that much space.</p>
+<p><img loading="lazy" src="/blog/images/4_2_3_1_build_up_option_i_progress.png" alt="4-2-3-1 build-up option I"  title="4-2-3-1"  />
+
+<em>Diagram II: With the right timing and high-quality passes, the ball can be transferred to CB(4) who can then penetrate the midfield. Notice the positioning of #4 who didn&rsquo;t go
+too much to the side in order to be able to take as much space as possible with the 1st touch.</em></p>
+<p>It is important to notice that in this case, playing the ball to the side usually doesn&rsquo;t lead to any progress in space won since opposition&rsquo;s
+wingers play 1vs.1 on our full-backs. That&rsquo;s why it is important that center-backs are brave when moving the ball forward to they could create
+2vs.1 with the full-back on the wing.</p>
+<p><img loading="lazy" src="/blog/images/4_2_3_1_build_up_option_i_2_1_side.png" alt="4-2-3-1 build-up option I 2vs.1 on the side"  title="4-2-3-1"  />
+
+<em>When CB(#4) has the space, he exploits it. That will trigger the winger(#7) who will find himself in a difficult situation where he needs to defend 2vs.1 on the side.
+When the 1st line of pressure is won, options in depth have a lot of sense. E.g opposite winger(#7) who makes diagonal run behind the full-back(#3).</em></p>
+<h2 id="instructions">Instructions</h2>
+<p>As we saw, there are several options but what is important is how to give players simple, intuitive instructions that they can use
+when various situations occur.</p>
+<ul>
+<li>midifielders don&rsquo;t drop if not necessary</li>
+<li>no need for 2 midfielders dropping if only one is enough</li>
+<li>midfielders, perform the rotation</li>
+<li>center-backs be brave, exploit the space</li>
+<li>full-backs seek for space</li>
+<li>full-backs don&rsquo;t limit your space to the side, come inside</li>
+</ul>
 
   </div>
 
@@ -147,7 +193,7 @@ StatsPerform uses <strong>Opta</strong> in the background to generate <strong>va
 
 <div class="share-buttons">
 
-    <a target="_blank" rel="noopener noreferrer" aria-label="share Introduction to statistical football analysis on linkedin"
+    <a target="_blank" rel="noopener noreferrer" aria-label="share 4-2-3-1 Part II: Build-up on linkedin"
         href="https://www.linkedin.com/in/andi-skrgat-658b471b8/">
         <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve">
             <path

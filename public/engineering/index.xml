@@ -1,34 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Andi Skrgat</title>
-    <link>https://as51340.github.io/blog/</link>
-    <description>Recent content on Andi Skrgat</description>
+    <title>Articles on Andi Skrgat</title>
+    <link>https://as51340.github.io/blog/engineering/</link>
+    <description>Recent content in Articles on Andi Skrgat</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     
-	<atom:link href="https://as51340.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://as51340.github.io/blog/engineering/index.xml" rel="self" type="application/rss+xml" />
     
-    
-    <item>
-      <title>4-2-3-1 Part I: General</title>
-      <link>https://as51340.github.io/blog/football/4-2-3-1-general/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://as51340.github.io/blog/football/4-2-3-1-general/</guid>
-      <description>General As a coach, my currently favourite formation is 4-2-3-1. It is very simple, especially when taking into account that I am explaining it through the season to the kids. Compared to the simplest 4-4-2, it offers an additional midfielder by dropping one striker into half-space.
-I like the formation because it offers plenty of attacking options while maintaining defensive stability. Two central (defensive) midfielders form solid base when building the attack.</description>
-    </item>
-    
-    <item>
-      <title>4-2-3-1 Part II: Build-up</title>
-      <link>https://as51340.github.io/blog/football/4-2-3-1-build-up/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://as51340.github.io/blog/football/4-2-3-1-build-up/</guid>
-      <description>Introduction I am usually playing against 4-3-3 and 4-2-3-1 formations where teams press with 2 or at most 3 players. When pressing with 3 this is usually not on very high level so same ideas are used.
-Situation I: Opposite striker presses When only 1 opposite striker is pressing, the situation can be usually solved with center-backs and goalkeeper only in the 1st zone. The ball is played from the GK to one CB who can try to push into the midfield.</description>
-    </item>
     
     <item>
       <title>Choosing optimal index with limited information available</title>
@@ -49,15 +29,6 @@ Situation I: Opposite striker presses When only 1 opposite striker is pressing, 
     </item>
     
     <item>
-      <title>Football analysis products part II</title>
-      <link>https://as51340.github.io/blog/football/football_analysis_products_part2/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://as51340.github.io/blog/football/football_analysis_products_part2/</guid>
-      <description>There are two types of data you can work with when doing football analysis. The first type is tracking data which provides us with information about the position of every player and the ball at every moment of the match. Such data is already enough to extract a variety of statistical info related to players such as distance covered, number of sprints, sprint classification into categories, player speed and acceleration through time etc.</description>
-    </item>
-    
-    <item>
       <title>High availability Memgraph</title>
       <link>https://as51340.github.io/blog/engineering/high_availability/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -74,16 +45,6 @@ Video Blog post</description>
       
       <guid>https://as51340.github.io/blog/engineering/larger_than_memory_architecture/</guid>
       <description>Blog post</description>
-    </item>
-    
-    <item>
-      <title>Introduction to statistical football analysis</title>
-      <link>https://as51340.github.io/blog/football/introduction_to_football_analysis/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://as51340.github.io/blog/football/introduction_to_football_analysis/</guid>
-      <description>Two categories of products used in the industry can be identified. First category of products mainly deal with a support for event tagging and drawing visualizations. One of the best examples of a first category is Once, the product which has the possibility to tag actions based on the information about action&amp;rsquo;s end result.
-StatsPerform is a main representative of the second category of products supporting ball and player tracking. Except for an incredible amount of information it can provide analysts with, such platform allows analysis of opponent team without any GPS devices required.</description>
     </item>
     
     <item>
