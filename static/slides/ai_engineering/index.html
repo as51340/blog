@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI Engineering — How I Actually Code</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/theme/white.css" id="theme" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/github.min.css" />
+
+    <style>
+      :root {
+        --accent: #1a56db;   /* single restrained accent */
+        --ink: #1c2024;
+        --muted: #6b7280;
+        --rule: #d7dbe0;
+        --good: #1a7f37;
+        --bad: #b42318;
+        --code-bg: #f5f6f8;
+      }
+
+      .reveal {
+        font-family: "Inter", "Helvetica Neue", Arial, system-ui, sans-serif;
+        font-size: 26px;
+        color: var(--ink);
+      }
+      .reveal .slides { text-align: left; }
+      .reveal .slides section { top: 0 !important; }
+
+      .reveal h1, .reveal h2, .reveal h3 {
+        color: var(--ink);
+        text-transform: none;
+        letter-spacing: -0.2px;
+        font-weight: 700;
+        margin: 0 0 0.5em 0;
+      }
+      .reveal h1 { font-size: 1.9em; }
+      .reveal h2 {
+        font-size: 1.35em;
+        border-bottom: 2px solid var(--accent);
+        padding-bottom: 0.18em;
+        margin-bottom: 0.7em;
+      }
+      .reveal h3 { font-size: 0.92em; color: var(--accent); font-weight: 700; }
+
+      .reveal p, .reveal li { line-height: 1.4; }
+      .reveal ul { margin: 0 0 0 1.1em; }
+      .reveal li { margin-bottom: 0.3em; }
+      .reveal strong { font-weight: 700; }
+      .reveal em { color: var(--muted); font-style: italic; }
+      .reveal a { color: var(--accent); }
+
+      /* code */
+      .reveal pre {
+        width: 100%;
+        box-shadow: none;
+        font-size: 0.52em;
+        margin: 0.4em 0;
+      }
+      .reveal pre code {
+        border: 1px solid var(--rule);
+        border-radius: 4px;
+        padding: 14px 16px;
+        max-height: 480px;
+        background: var(--code-bg);
+      }
+      .reveal code:not(pre code) {
+        background: var(--code-bg);
+        border: 1px solid var(--rule);
+        color: #b4252f;
+        padding: 0 5px;
+        border-radius: 3px;
+        font-size: 0.88em;
+      }
+
+      /* plain two/three column text — no cards */
+      .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start; }
+      .cols-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 34px; align-items: start; }
+      .col h3 { border-bottom: 1px solid var(--rule); padding-bottom: 0.2em; margin-bottom: 0.5em; }
+      .col.good h3 { color: var(--good); border-color: var(--good); }
+      .col.bad h3  { color: var(--bad);  border-color: var(--bad); }
+
+      .muted { color: var(--muted); }
+      .lead { font-size: 1.08em; }
+      .note { color: var(--muted); font-size: 0.8em; margin-top: 0.6em; }
+
+      /* simple monospace flow: a -> b -> c */
+      .flow { font-family: ui-monospace, "SFMono-Regular", Menlo, monospace;
+              font-size: 0.82em; color: var(--ink); background: var(--code-bg);
+              border: 1px solid var(--rule); border-radius: 4px; padding: 12px 16px; }
+      .flow b { color: var(--accent); }
+
+      .reveal .slide-number { color: var(--muted) !important; background: none !important; }
+      .reveal .progress { color: var(--accent); }
+
+      .check::before { content: "✓ "; color: var(--good); }
+      .cross::before { content: "✗ "; color: var(--bad); }
+
+      .kv { display: grid; grid-template-columns: max-content 1fr; gap: 4px 16px; font-size: 0.9em; }
+      .kv dt { color: var(--accent); font-weight: 700; }
+    </style>
+  </head>
+
+  <body>
+    <div class="reveal">
+      <div class="slides">
+
+        <!-- TITLE -->
+        <section>
+          <h1>AI Engineering</h1>
+          <p class="lead">How I actually code with Claude</p>
+          <p class="muted">spec &rarr; slice &rarr; autonomous agents &rarr; review &rarr; merge</p>
+          <img src="images/socio-technical.png" alt="Socio-technical systems are made of people; choose to be helpful."
+               style="display:block; margin:0.6em auto 0; max-width:62%; border:1px solid var(--rule); border-radius:6px;" />
+          <aside class="notes">
+            A talk about using AI to build real features in Memgraph, not toy demos. Thesis: AI is a force multiplier
+            if you engineer the process around it. Left alone, it drifts.
+          </aside>
+        </section>
+
+        <!-- VIBE vs AGENTIC -->
+        <section>
+          <h2>Vibe coding vs. agentic engineering</h2>
+          <div class="cols">
+            <div class="col bad">
+              <h3>Vibe coding</h3>
+              <ul>
+                <li>Prompt, eyeball the diff, accept, repeat</li>
+                <li>You are the loop — babysitting every step</li>
+                <li>No spec, no objective success criteria</li>
+                <li>Falls apart on large, real codebases</li>
+                <li>More people can code and build things</li>
+              </ul>
+            </div>
+            <div class="col good">
+              <h3>Agentic engineering</h3>
+              <ul>
+                <li>Design &rarr; PRD &rarr; issues &rarr; slices</li>
+                <li>The <em>process</em> is the loop, not you</li>
+                <li>Tests are the objective contract</li>
+                <li>Scales to bigger features and more complex code</li>
+                <li>Engineers are more productive, increased output, increased quality</li>
+              </ul>
+            </div>
+          </div>
+          <aside class="notes">
+            Vibe = intuition-driven, human on every token. Agentic = invest up front in a spec and success criteria,
+            then let agents execute against them.
+          </aside>
+        </section>
+
+        <!-- DORA 2025 -->
+        <section>
+          <h2>The research backs this up</h2>
+          <div class="cols" style="align-items:center;">
+            <div class="col">
+              <img src="images/dora-2025.png" alt="DORA 2025 — State of AI-assisted Software Development"
+                   style="width:100%; border:1px solid var(--rule); border-radius:6px;" />
+            </div>
+            <div class="col">
+              <p class="lead">Google Cloud's <strong>2025 DORA Report</strong>: <em>State of AI-assisted
+              Software Development</em>.</p>
+              <p>The industry-wide data mirrors what this talk argues — AI is a multiplier when you engineer the
+              process around it.</p>
+              <p class="note"><a href="https://dora.dev/research/2025/">dora.dev/research/2025</a></p>
+            </div>
+          </div>
+          <ul style="margin-top:0.1em;">
+            <li>Decision making</li>
+            <li>Technical strategy</li>
+            <li>Security</li>
+            <li>Code health</li>
+            <li>Release hygiene</li>
+            <li>Reliability</li>
+          </ul>
+          <aside class="notes">
+            External validation for the thesis: the 2025 DORA report on AI-assisted software development. Worth citing
+            as the industry-wide evidence behind the agentic-engineering argument.
+          </aside>
+        </section>
+
+        <!-- HARNESS FAILURE MODES -->
+        <section>
+          <h2>The problem with the model &amp; harness</h2>
+          <p class="muted">Left unconstrained, the context/harness has predictable failure modes:</p>
+          <div class="cols-3" style="margin-top:0.6em;">
+            <div class="col">
+              <h3>Agentic laziness</h3>
+              <p>Stops early, declares victory, skips hard edge cases — "should work".</p>
+            </div>
+            <div class="col">
+              <h3>Self-preferential bias</h3>
+              <p>Trusts its own output, reviews its own code kindly, won't challenge its plan.</p>
+            </div>
+            <div class="col">
+              <h3>Goal drift</h3>
+              <p>Over a long run it wanders from the original intent — solves a nearby problem.</p>
+            </div>
+          </div>
+          <p class="note"><strong>The best spec is executable — TDD.</strong> Write the failing test first: a red
+          test is a goal the agent can't fake passing, so it anchors against laziness and drift at once. Everything
+          else in this talk is process built around that idea.</p>
+          <aside class="notes">
+            Named up front because every later technique is a countermeasure. The strongest single one is test-driven
+            development — the test IS the spec, and it's machine-checkable. Laziness → a red test can't be waved away.
+            Self-preference → separate review session. Goal drift → the test pins the intent.
+          </aside>
+        </section>
+
+        <!-- PIPELINE -->
+        <section>
+          <h2>My pipeline</h2>
+          <p class="flow">
+            <b>/grill-me</b> &rarr; <b>/write-prd</b> &rarr; <b>/to-issues</b> &rarr;
+            <b>claude -p</b> (subagent per slice) &rarr; <b>review</b> (fresh session) &rarr; <b>merge</b> (base branch)
+          </p>
+          <div class="cols" style="margin-top:1em;">
+            <div class="col">
+              <h3>Front-loaded thinking</h3>
+              <p>The first three steps produce a durable artifact: a spec and a set of independently-shippable issues.</p>
+            </div>
+            <div class="col">
+              <h3>Cheap execution</h3>
+              <p>Once slices exist, execution is parallel and hands-off. The expensive part is deciding <em>what</em>
+              to build, not typing it.</p>
+            </div>
+          </div>
+          <p class="note"><strong>Open question:</strong> should <code>/write-prd</code> be unified across the company —
+          one shared PRD format so all agents speak the same language?</p>
+          <aside class="notes">
+            Move human effort to the front (design) and the back (review); automate the middle. The write-prd step is
+            a candidate for company-wide standardization — a single PRD skill/template would make specs portable
+            between teams and consistent for the agents consuming them.
+          </aside>
+        </section>
+
+        <section>
+          <h2>Waterfall model vs. agile model</h2>
+          <ul>
+            <li>Waterfall means pipeline: definition, design, coding, testing and maintenance.</li>
+            <li>Agile means: smaller issues, smaller reviews, iterations, incremental etc.</li>
+            <li>The problem with agile was that it is super hard to understand all implications upfront.</li>
+            <li>By splitting into smaller tasks, you get to influence more changes as you build it (how, whant and what do you change => that's hard).</li>
+          </ul>
+           <img src="images/philosophy_of_software_design.png" alt="Philosophy of software design."
+               style="display:block; margin:0.1em auto 0; max-width:30%; border:1px solid var(--rule); border-radius:6px;" />
+          <aside class="notes">
+          </aside>
+        </section>
+
+        <!-- GRILL-ME -->
+        <section>
+          <h2><code>/grill-me</code> — interrogate the design</h2>
+          <p>Before any code, make the model <strong>relentlessly interview me</strong> about the plan —
+          resolving every branch of the decision tree.</p>
+          <ul>
+            <li>Surfaces edge cases I hadn't thought of (which failure crashes, which don't)</li>
+            <li>Forces decisions to be <em>explicit</em> instead of implicit</li>
+            <li>Directly fights goal drift — intent is pinned down before we start</li>
+            <li>With a good context, I am somewhere around 10 questions.</li>
+          </ul>
+          <p class="note"><strong>Not perfect:</strong> it still asks some completely obvious questions, and sometimes
+          too many. Bring as much context as possible and think the design through <em>up front</em>;
+          the more I give it, the sharper the questions.</p>
+          <aside class="notes">
+            If I can't answer the model's questions, I don't understand the feature well enough to delegate it. But
+            grill-me is a tool, not an oracle — expect some trivially-logical questions and occasional over-asking.
+            The leverage comes from front-loading context and thinking hard before the session, not from the tool alone.
+            New idea is to use /wayfinder.
+          </aside>
+        </section>
+
+        <!-- PRD + ISSUES -->
+        <section>
+          <h2><code>/write-prd</code> &amp; <code>/to-issues</code></h2>
+          <div class="cols">
+            <div class="col">
+              <h3>/write-prd — a technical PRD</h3>
+              <p>Problem, solution, user stories, scope. Mostly you skim it — some argue you shouldn't read PRDs at
+              all, since LLMs summarize them well.</p>
+              <p>Not sure if this should be on GH because how do you update it over time? Memory rule: probably expensive in terms of time (what's the granularity of
+                change needed for the agent to go update the spec? + you're polluting the context)
+              </p>
+            </div>
+            <div class="col">
+              <h3>/to-issues — your human touch</h3>
+              <p>This is where I actually spend attention: how would I implement it? Can slices be
+              parallelized? Should two issues merge, or one split further?</p>
+            </div>
+          </div>
+          <p class="note">One slice = one agent, one branch, one PR, one review — small blast radius, parallelizable,
+          each carries its own tests.</p>
+          <aside class="notes">
+            The PRD is a technical artifact you mostly skim — LLMs are good at summarizing it back. ISSU was the one
+            feature spec deep enough to really matter, and even then gaps remained. The to-issues step is the human
+            touch: slicing, ordering, parallelizing, merging/splitting — that's where my judgement adds value.
+          </aside>
+        </section>
+
+        <!-- LAUNCH SUBAGENTS -->
+        <section>
+          <h2>Launching a subagent per slice</h2>
+          <p class="muted">One headless agent, scoped strictly to one issue, opens its own PR:</p>
+          <pre><code class="language-bash" data-trim data-line-numbers>claude -p "Implement the vertical slice described in
+  specs/read_only/issues/03-honor-across-failover.
+  Read that issue file in full plus its parent PRD at
+  specs/read_only/global-read-only-ha.md, then implement the slice.
+  Scope yourself strictly to this issue.
+  Make a separate GH branch and open PR with the current branch as the base." \
+  --dangerously-skip-permissions \
+  --output-format stream-json --verbose</code></pre>
+          <p class="note">Read issue + parent PRD (context) · scope strictly (anti-drift) · own branch + PR
+          (reviewable unit) · skip-permissions (zero prompts).</p>
+          <p class="note"><strong>Fresh context on purpose:</strong> Close the main planning session (noting its
+          session ID so I can resume it later) and launch each slice as a new <code>claude -p</code> run — a clean
+          context holding only the issue + PRD.</p>
+          <p class="note">Vertical slice is a term connected to deep modules => classes that do 
+            a lot with a small interface, not "classitis" like in Java.
+          </p>
+          <aside class="notes">
+            "Scope yourself strictly to this issue" is a deliberate anti-drift instruction. PRD = the why, issue = the
+            what. stream-json + verbose so I can watch/collect the run.
+
+            I deliberately close the main session and start the subagent fresh. I keep the main session's ID so I can
+            log back into it later, but the coding agent gets a clean context — just the issue and its PRD — so none
+            of the long planning conversation biases or drifts it.
+
+            Practical gotcha: I also had to explicitly tell the subagent something like "Use the instructions from
+            CLAUDE.md" — otherwise it skipped project conventions and, e.g., the GitHub CI labels weren't created (so
+            CI never fired), branch/commit prefixes were off, etc. The headless agent doesn't reliably pick up
+            CLAUDE.md on its own, so I name it in the prompt.
+          </aside>
+        </section>
+
+        <!-- AFK vs HITL -->
+        <section>
+          <h2>AFK vs. HITL</h2>
+          <div class="cols">
+            <div class="col bad">
+              <h3>HITL — human in the loop</h3>
+              <ul>
+                <li>Approve every command, every edit</li>
+                <li>Chained to the keyboard</li>
+                <li>Hours of typing yes / no</li>
+                <li>Throughput = your reaction time</li>
+              </ul>
+            </div>
+            <div class="col good">
+              <h3>AFK — away from keyboard</h3>
+              <ul>
+                <li>Agent runs to completion unattended</li>
+                <li>Frees you for deep, focused work elsewhere</li>
+                <li>Come back to a finished PR</li>
+                <li>Throughput = number of agents</li>
+              </ul>
+            </div>
+          </div>
+          <p class="note"><strong>The real win is deep work.</strong> While the agent runs I concentrate fully on
+          something else — no context-switching back to approve every step, no keeping the task warm in my head. <a href="https://youtu.be/2n41YjR5QfU?t=1798">Attention mgmt</a>
+        </p>
+          <aside class="notes">
+            Biggest quality-of-life change. HITL feels safe but it's a throughput ceiling and it's miserable. Beyond
+            throughput, the underrated benefit is protecting deep work: I don't have to keep switching context to
+            babysit — I can go concentrate on a hard problem while the agent grinds. Goal: make AFK safe enough — via
+            specs, tests, scoping, review — that I trust it.
+          </aside>
+        </section>
+
+        <!-- SKIP PERMISSIONS -->
+        <section>
+          <h2>Enabling AFK: <code>--dangerously-skip-permissions</code></h2>
+          <p>Permissions are annoying and even a full allowlist can't guarantee silence: the
+          <code>cd … &amp;&amp; … &gt; file</code> pattern trips a built-in guard the allowlist can't satisfy.</p>
+          <div class="cols">
+            <div class="col good">
+              <h3>Enables AFK</h3>
+              <ul>
+                <li>Launch with the flag; agent can't self-grant it mid-session</li>
+                <li>Run from repo root, absolute paths, no <code>cd</code> chains</li>
+              </ul>
+            </div>
+            <div class="col bad">
+              <h3>The name is not a joke</h3>
+              <ul>
+                <li>Nothing stops <code>rm -rf</code>, <code>git reset --hard</code>, force-push</li>
+                <li>Irreversible actions run with <em>no</em> confirmation</li>
+                <li>Reading untrusted content = prompt injection with a live shell</li>
+              </ul>
+            </div>
+          </div>
+          <p class="note"><strong>The right fix is a real sandbox.</strong> Run the agent inside a
+          Docker container so an un-gated shell can't touch anything that matters. I first tried <em>sandcastle</em>,
+          but it leans on the Anthropic API, is more geared to TypeScript, and pulls issues straight from GitHub — not
+          a clean fit for this C++ flow. So I rolled my own: <code>claude-sandbox</code> (next slide).</p>
+          <aside class="notes">
+            Bypass mode fixes the annoyance but hands an autonomous process an un-gated shell: it can delete files,
+            hard-reset, or push with no prompt, and is vulnerable to prompt injection. The proper answer is a
+            containerized sandbox so the blast radius is the container, not my machine. I experimented with sandcastle
+            but it assumes the Anthropic API, is oriented to TypeScript, and wants to pull issues from GitHub — it
+            didn't fit our C++ workflow, so I built my own throwaway container, claude-sandbox — that's the next slide.
+          </aside>
+        </section>
+
+        <!-- CLAUDE-SANDBOX -->
+        <section>
+          <h2>My sandbox: <code>claude-sandbox</code></h2>
+          <p class="muted">A throwaway Docker container that runs the agent with bypass mode <em>safely</em> — blast
+          radius is the container, not my machine.</p>
+          <div class="cols">
+            <div class="col">
+              <h3>What it does</h3>
+              <ul>
+                <li>Clone <code>REPO</code> at <code>INPUT_BRANCH</code>, cut <code>OUTPUT_BRANCH</code></li>
+                <li>Run <code>claude -p --dangerously-skip-permissions</code> with my prompt</li>
+                <li>Commit + push, then open a PR back to the input branch</li>
+                <li>Live <code>stream-json</code> feed piped through <code>jq</code> — I watch every tool call</li>
+              </ul>
+            </div>
+            <div class="col good">
+              <h3>Why it fits</h3>
+              <ul>
+                <li class="check"><strong>Subscription, not API</strong> — uses <code>CLAUDE_CODE_OAUTH_TOKEN</code>,
+                  <code>unset</code>s <code>ANTHROPIC_API_KEY</code></li>
+                <li class="check">Runs as a non-root <code>mg</code> user inside the container</li>
+                <li class="check">Disposable: <code>--rm</code>, nothing persists on the host</li>
+              </ul>
+            </div>
+          </div>
+          <pre><code class="language-bash" data-trim>./run.sh "Fix the flaky test in tests/unit/foo and add a regression test" \
+  feature/storage-allow-recovery-failure  claude/fix-flaky-foo  memgraph/memgraph</code></pre>
+          <p class="note">Positional args: <code>"&lt;prompt&gt;" &lt;input-branch&gt; &lt;output-branch&gt; [owner/repo]</code>
+          (repo defaults to <code>memgraph/memgraph</code>). Lives under <code>../claude-sandbox</code>.</p>
+          <aside class="notes">
+            This is the answer to the previous slide's problem. Four files: a Dockerfile (node:22-slim + git, gh, jq,
+            Claude Code CLI), entrypoint.sh (the clone → branch → run → push → PR flow), run.sh (host helper), and a
+            .claude config dir. Key design choices: it authenticates against my subscription via
+            CLAUDE_CODE_OAUTH_TOKEN (from `claude setup-token`) and explicitly unsets ANTHROPIC_API_KEY so it can never
+            bill the API; it runs as a non-root user; and the container is --rm disposable so the un-gated shell can't
+            touch my host. This is what makes AFK + bypass mode actually safe, and unlike sandcastle it's not tied to
+            the API or TypeScript and doesn't force a GitHub-issues workflow.
+          </aside>
+        </section>
+
+        <!-- SUBAGENT SCALING -->
+        <section>
+          <h2>The catch: you can't just spawn 50 agents</h2>
+          <p>Each coding agent eventually wants to <strong>build</strong> Memgraph. The build is the bottleneck:</p>
+          <div class="cols-3">
+            <div class="col"><h3>RAM</h3><p>Parallel C++ compiles blow up memory — the machine swaps or OOMs.</p></div>
+            <div class="col"><h3>CPU</h3><p>N agents × <code>ninja -j</code> oversubscribe every core; everything crawls.</p></div>
+            <div class="col"><h3>Contention</h3><p>Builds fight each other; wall-clock gets <em>worse</em>, not better.</p></div>
+          </div>
+          <p><strong>What I actually do:</strong> keep it simple — plain <code>claude -p</code>, low concurrency. I
+          don't use dynamic workflows / <code>ultracode</code>: they burn far too many tokens for the benefit here.</p>
+          <p class="note">Corollary guardrail: never trigger a full <code>memgraph</code> build for a test-only slice —
+          it compiles nothing new and wastes minutes + RAM.</p>
+          <a href="https://youtu.be/2n41YjR5QfU?t=1061">Good talk about build problems</a>
+          <aside class="notes">
+            Naive fan-out is a trap for compiled languages — the constraint is my machine's RAM and cores during the
+            build, and containerized sandboxes are the real answer. I deliberately avoid ultracode / dynamic
+            workflows: the token cost isn't worth it for me. I just start claude -p and keep the number of concurrent
+            agents low.
+          </aside>
+        </section>
+
+        <!-- TESTS -->
+        <section>
+          <h2>Tests = the objective anti-drift anchor</h2>
+          <p>Tests make intent machine-checkable — the agent can't declare victory while they're red.
+          <strong>They work best when I'm specific:</strong> "do this, this, and this — and look at
+          <em>this folder/file</em> for how we write such a test."</p>
+          <ul>
+            <li>Point it at an existing test as the pattern to follow</li>
+            <li>Spell out the cases to cover — don't leave "what to test" to the model</li>
+          </ul>
+          <p class="note"><strong>The nuance that bites:</strong> it will happily write a test for the <em>old</em>
+          behavior, not realizing an equivalent test probably already exists. So you really do have to read the tests
+          it wrote — and watch the logs to see how the system actually behaves — not just trust a green checkmark.</p>
+          <aside class="notes">
+            Tests are the anchor, but the agent grades its own homework: with good direction (which cases, which
+            existing test to mirror) they're usually fine. The classic failure is it re-tests old behavior or
+            duplicates a test that already exists. I read the tests and the logs to confirm real behavior, not just
+            pass/fail.
+          </aside>
+        </section>
+
+        <!-- GUARDRAILS -->
+        <section>
+          <h2>Guardrails I keep in memory</h2>
+          <div class="cols">
+            <div class="col">
+              <ul>
+                <li><strong>Pull before branching</strong> — branch off fresh <code>origin/&lt;base&gt;</code></li>
+                <li><strong>Zero-prompt subagents</strong> — bypass mode; no <code>cd &amp;&amp; … &gt; file</code></li>
+                <li><strong>New gflag ⇒ config test</strong> — register in <code>default_config.py</code></li>
+                <li><strong>E2E registration</strong> — <code>workloads.yaml</code> + <code>CMakeLists.txt</code></li>
+                <li><strong>CI labels</strong> — attach labels, then close+reopen PR to re-fire CI</li>
+              </ul>
+            </div>
+            <div class="col">
+              <ul>
+                <li><strong>Branch/commit prefixes</strong> — <code>feat/ fix/ testing/ docs/</code></li>
+                <li><strong>No build for test-only slices</strong></li>
+                <li><strong>Minimal comments</strong> — no PR/ticket refs, no line numbers</li>
+                <li><strong>No API pollution for tests</strong></li>
+                <li><strong>Check pinned dep versions</strong> — read <code>conanfile.py</code> first</li>
+              </ul>
+            </div>
+          </div>
+          <p class="note"><strong>Where they live:</strong> the agent's persistent memory —
+          <code>~/.claude/projects/&lt;project&gt;/memory/</code>: an index <code>MEMORY.md</code> plus one
+          <code>feedback_*.md</code> file per rule (e.g. <code>feedback_pull_before_branching.md</code>). Project-wide
+          conventions also sit in <code>CLAUDE.md</code> at the repo root. Each rule started as a mistake made once,
+          then written down so every session &amp; subagent inherits it.</p>
+          <aside class="notes">
+            Concretely: memory files under ~/.claude/projects/&lt;project-slug&gt;/memory/ — MEMORY.md is the index
+            loaded every session, and each fact is its own feedback_*.md / project_*.md file. Repo conventions live in
+            CLAUDE.md at the root, which the agent reads too. These accreted from real incidents and review comments —
+            e.g. the stale-base branching rule exists because a subagent branched off an out-of-date base and produced
+            a false bug report.
+          </aside>
+        </section>
+
+        <!-- GOOD SIDE -->
+        <section>
+          <h2>The good side: observe &amp; test what it built</h2>
+          <p><strong>My time shifts to observing the system</strong> instead of
+          writing code:</p>
+          <ul>
+            <li>More hours actually exercising the feature &amp; reasoning about correctness</li>
+            <li><strong>Customer calls</strong> mean a lot because I can see how they really use the product</li>
+            <li>Reviews too: I build it, test it, play with it, and
+              <strong>try to break it</strong></li>
+            <li><a href="https://youtu.be/2n41YjR5QfU?t=1916">Asking why? and what if?</a></li>
+          </ul>
+          <div class="cols">
+            <div class="col">
+              <h3><code>--storage-allow-recovery-failure</code></h3>
+              <p>Corrupt one tenant's durability → instance boots with that tenant <em>defunct</em> instead of
+              crashing. I could reproduce corruption, watch it boot, and confirm healthy tenants kept working.</p>
+            </div>
+            <div class="col">
+              <h3>Hot &amp; cold storage</h3>
+              <p>Same story — build it, exercise it, observe the tiers behave. Verification is concrete, not vibes.</p>
+            </div>
+          </div>
+          <aside class="notes">
+            The core benefit: I lose far less time writing code, so I spend it observing and stress-testing. That
+            makes me more useful on customer calls too — I actually see how they use the product. Reviews shift the
+            same way: instead of reading C++ line-by-line I build it, run it, play with it, and try to break it.
+            Defunct-tenant is a great example — you WANT to see the failure path with your own eyes; AI got me to a
+            runnable state quickly and I did the observing.
+          </aside>
+        </section>
+
+        <!-- REVIEWING -->
+        <section>
+          <h2>Reviewing: a fresh session</h2>
+          <p>I never let the same context that wrote the code also bless it — that's self-preferential bias.</p>
+          <ul>
+            <li>Start a <strong>new session</strong> with the Memgraph <strong>skills &amp; review agents</strong>
+              (storage, HA, correctness, maintainability…)</li>
+            <li>Clean context = no attachment to the earlier plan</li>
+            <li>After <strong>every</strong> subagent finishes: review that slice, then <strong>merge it to the base
+              branch</strong></li>
+          </ul>
+          <p class="flow" style="margin-top:0.8em;">
+            <b>subagent done</b> &rarr; <b>fresh review session</b> &rarr; <b>MG skills + agents</b> &rarr;
+            <b>merge to base</b>
+          </p>
+          <aside class="notes">
+            A model reviewing its own work in the same context is too kind. Fresh session + specialized review agents
+            is the countermeasure to self-preferential bias.
+          </aside>
+        </section>
+
+        <!-- MERGE CONFLICTS -->
+        <section>
+          <h2>Merge conflicts: <code>/resolve-conflicts</code></h2>
+          <p>Parallel slices merging into one base branch means conflicts are routine. I hand them to the
+          <code>/resolve-conflicts</code> skill — a structured framework for merging imports, tests, lock files,
+          config, and deleted-but-modified files.</p>
+          <p class="muted">Real run — <a href="https://github.com/memgraph/memgraph/pull/4354">PR #4354</a>: mostly
+          correct, but two issues slipped through.</p>
+          <div class="cols">
+            <div class="col bad">
+              <h3>The stupid one</h3>
+              <p>Plain <strong>duplication</strong> — kept a block from both sides. Obvious on a read, trivial to fix,
+              but a green build wouldn't have caught it.</p>
+            </div>
+            <div class="col bad">
+              <h3>The serious one</h3>
+              <p>A genuinely subtle resolution — <strong>I'd have made the same call on my first try.</strong> Not a
+              model failure so much as a genuinely hard merge that needs real understanding.</p>
+            </div>
+          </div>
+          <p class="note"><strong>Takeaway:</strong> the skill does the mechanical 90% well, but conflict resolution is
+          exactly where semantic intent hides — you still have to read the result, not trust the merge. The hard cases
+          are hard for a human too.</p>
+          <aside class="notes">
+            Conflicts are unavoidable once you're merging many parallel slices into a shared base. /resolve-conflicts
+            gives a repeatable framework (imports, tests, lockfile regen, config, deleted-vs-modified). On PR #4354 the
+            output was mostly good but had two defects: one trivial duplication (kept both sides of a block — dumb but
+            invisible to the compiler), and one genuinely subtle one that I admit I'd have resolved the same wrong way
+            on a first pass. That second one is the honest point: some conflicts encode semantic intent that neither
+            the model nor a quick human read reliably recovers — you must actually understand both branches. So the
+            skill is leverage on the mechanical majority, not a substitute for reading the final merge.
+          </aside>
+        </section>
+
+        <!-- AUTOMATION GAP -->
+        <section>
+          <h2>The gap I haven't closed yet</h2>
+          <p class="lead">Ideally this is fully automated: agent codes a slice &rarr; another agent reviews it &rarr;
+          auto-merge — no human in between.</p>
+          <div class="cols" style="margin-top:0.6em;">
+            <div class="col good">
+              <h3>Have</h3>
+              <ul>
+                <li>Autonomous coding per slice</li>
+                <li>Fresh-session review with MG agents</li>
+                <li>Manual review + merge after each slice</li>
+              </ul>
+            </div>
+            <div class="col">
+              <h3>Want</h3>
+              <ul>
+                <li>Code &rarr; review &rarr; merge as one pipeline</li>
+                <li>Human only on the final gate / conflicts</li>
+                <li>Not there yet — still the manual step</li>
+              </ul>
+            </div>
+          </div>
+          <p class="note"><strong>A natural next step:</strong> spin up a review subagent per issue (complexity
+          permitting). Reviewing issue-by-issue is far easier than reviewing the whole base branch at once — that's
+          more code, more context, and harder to reason about.</p>
+          <aside class="notes">
+            Review+merge is still me hitting the button after each subagent. The dream: a workflow that chains coding
+            and reviewing agents and only escalates on disagreement. A concrete next step is a per-issue review
+            subagent — but only where the issue is complex enough to warrant it. Reviewing per issue beats reviewing
+            the accumulated base branch, which is far more code and much harder to reason about at once.
+          </aside>
+        </section>
+
+        <!-- CODEBASE KNOWLEDGE -->
+        <section>
+          <h2>The real downside: we know the codebase less</h2>
+          <p>If the agent writes most of it, our mental model of the code <strong>erodes over time</strong>.</p>
+          <div class="cols">
+            <div class="col">
+              <h3>Veterans</h3>
+              <p>Those of us here longer already carry the model - we can still read and
+              review.</p>
+            </div>
+            <div class="col bad">
+              <h3>Starting from scratch</h3>
+              <p>My intuition: someone building a codebase this way <strong>from day one</strong> will find it much
+              harder to ever <em>truly</em> know it because the understanding was never built.</p>
+            </div>
+          </div>
+          <p class="note">Reviewing keeps you close to the code — <a href="https://youtu.be/2n41YjR5QfU?t=1195">but reviewing isn't the same as having designed and
+          written it.</a></p>
+          <aside class="notes">
+            A genuine worry, not doomsday. For established engineers on an established codebase, AI is leverage on top
+            of understanding we already have. Lean on it from day one and the deep intuition may never form.
+          </aside>
+        </section>
+
+        <!-- AI CAN'T REPLACE US -->
+        <section>
+          <h2>AI can't replace us</h2>
+          <p class="lead">The more complex features never came out right on their own — even with a good spec.</p>
+          <p>AI is a <strong>powerful amplifier of an engineer</strong>, not a substitute. What stays with us:</p>
+          <ul>
+            <li>Architecture decisions</li>
+            <li>Cross-subsystem invariants</li>
+            <li>Knowing what "correct" means</li>
+            <li>Deciding what to build</li>
+            <li>The final review</li>
+          </ul>
+          <aside class="notes">
+            Honest data point: a good spec for a hard feature still doesn't land end-to-end on its own. The
+            load-bearing decisions stayed human — the reassuring part.
+          </aside>
+        </section>
+
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/highlight/highlight.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/notes/notes.js"></script>
+    <script>
+      Reveal.initialize({
+        hash: true,
+        slideNumber: "c/t",
+        transition: "none",
+        width: 1280,
+        height: 720,
+        margin: 0.07,
+        controls: true,
+        progress: true,
+        plugins: [RevealHighlight, RevealNotes],
+      });
+    </script>
+  </body>
+</html>
