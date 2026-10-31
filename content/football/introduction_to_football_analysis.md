@@ -1,4 +1,5 @@
 ---
+date: 2023-04-29
 title: Introduction to statistical football analysis 
 type: page
 description: In the last few years, football analysis has been greatly enhanced with computer vision techniques based on artificial intelligence. Such products allow experienced analysts to extract many useful information in a much shorter time than doing it manually. This blog post dives into some of industry-level products.

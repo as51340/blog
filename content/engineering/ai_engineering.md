@@ -1,4 +1,5 @@
 ---
+date: 2026-07-21
 title: AI Engineering — How I Actually Code
 type: page
 description: How I code with Claude

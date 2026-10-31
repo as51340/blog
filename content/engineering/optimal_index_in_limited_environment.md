@@ -1,4 +1,5 @@
 ---
+date: 2023-04-11
 title: Choosing optimal index with limited information available
 type: page
 description: Although indexes are simple at its core, yielding an optimal query plan that uses them requires heuristic approach 🤔. Check out how we at Memgraph introduced probability theory to significantly speed up bulk loading workloads 📈. 

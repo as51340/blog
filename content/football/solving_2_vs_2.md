@@ -1,4 +1,5 @@
 ---
+date: 2025-12-24
 title: "Solving diagonal 2vs.2 football situation"
 type: page
 description: "Although we all like thinking in terms of tactics, football situations are often solved with involvement of only few players. One such, 2vs.2 we explore here."

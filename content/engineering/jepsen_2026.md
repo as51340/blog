@@ -1,4 +1,5 @@
 ---
+date: 2026-02-20
 title: Testing distributed systems Memgraph 2026
 type: page
 description: Distributed systems research

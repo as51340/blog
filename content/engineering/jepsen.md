@@ -1,4 +1,5 @@
 ---
+date: 2024-06-20
 title: Testing distributed systems
 type: page
 description: My attempt to work with Jepsen, testing tool for distributed systems.

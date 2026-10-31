@@ -1,4 +1,5 @@
 ---
+date: 2024-07-01
 title: "4-2-3-1 Part I: General"
 type: page
 description: "The best way to learn something is by trying to explain it to others. I am starting a series of blog posts about

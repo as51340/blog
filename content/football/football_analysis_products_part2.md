@@ -1,4 +1,5 @@
 ---
+date: 2023-05-08
 title: Football analysis products part II
 type: page
 description: In the first part, several football products were mistakenly not taken into account. This blog post wraps up the story about analysis systems while explaining how can data be used to create meaningful statistics.

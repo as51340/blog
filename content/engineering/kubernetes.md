@@ -1,4 +1,5 @@
 ---
+date: 2026-03-02
 title: Memgraph + Kubernetes
 type: page
 description: Kubernetes basics + Memgraph through K8s eyes

@@ -1,4 +1,5 @@
 ---
+date: 2023-06-04
 title: Synchronizing data access in databases
 type: page
 description: Databases expose their data in a parallel way to multiple users. However, synchronization must occur so that in every moment of its lifespan, the database's state is consistent.

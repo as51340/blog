@@ -1,4 +1,5 @@
 ---
+date: 2024-06-06
 title: High availability Memgraph 
 type: page
 description: Distributed systems are hard.

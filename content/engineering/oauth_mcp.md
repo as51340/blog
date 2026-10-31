@@ -1,4 +1,5 @@
 ---
+date: 2026-06-06
 title: Authorization on MCP servers
 type: page
 description: How to authorize MCP servers against a multi-tenant database?

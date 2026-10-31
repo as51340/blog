@@ -1,4 +1,5 @@
 ---
+date: 2025-12-24
 title: C++23 Modules, std::stacktrace, std::expected
 type: page
 description: Mostly talk about c++ modules

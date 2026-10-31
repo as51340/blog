@@ -1,4 +1,5 @@
 ---
+date: 2023-04-10
 title: Synchronize data between Memgraph and Elasticsearch
 type: page
 description: As part of my job at Memgraph, I worked on a challenging task of synchronizing text-search tool Elasticsearch with Memgraph graph database.

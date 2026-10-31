@@ -1,4 +1,5 @@
 ---
+date: 2026-10-31
 title: Inside the Memgraph Kubernetes Operator
 type: page
 description: How Kubernetes operators work, and how the Memgraph Kubernetes operator is built
